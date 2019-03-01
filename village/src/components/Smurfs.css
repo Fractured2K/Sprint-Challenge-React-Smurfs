@@ -1,0 +1,11 @@
+.Smurfs h1 {
+    text-align: center;
+    color: #2A4D69;
+}
+
+.Smurfs ul {
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+    color: #2A4D69;
+}
