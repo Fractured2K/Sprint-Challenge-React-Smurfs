@@ -2,9 +2,19 @@ import React, { Component } from 'react';
 
 import Smurf from './Smurf';
 import './Smurfs.css';
+import './Loader.css';
 
 class Smurfs extends Component {
   render() {
+    if (this.props.smurfs.length === 0) {
+      return (
+        <div className="Smurfs">
+          <h1>Smurf Village</h1>
+          <div class="loader">Loading...</div>
+        </div>
+      )
+    }
+
     return (
       <div className="Smurfs">
         <h1>Smurf Village</h1>
