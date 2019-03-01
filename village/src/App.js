@@ -23,12 +23,18 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
-  addSmurf = (smurf) => {
+  addSmurf = smurf => {
     axios.post('http://localhost:3333/smurfs', smurf)
       .then(res => this.setState({ smurfs: res.data }))
       .catch(err => console.log(err))
 
     this.props.history.push('/');
+  }
+
+  deleteSmurf = id => {
+    axios.delete(`http://localhost:3333/smurfs${id}`)
+      .then(res => this.setState({ smurfs: res.data }))
+      .catch(err => console.log(err));
   }
 
   render() {

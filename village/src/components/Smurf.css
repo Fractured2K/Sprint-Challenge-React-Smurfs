@@ -4,4 +4,26 @@
     margin: 10px;
     padding: 20px;
     min-width: 200px;
+    margin-bottom: 10px;
+}
+.smurf-info {
+    height: 115px;
+}
+
+.buttons > span {
+    margin: 3px;
+}
+
+.edit {
+    border-radius: 2px;
+    padding: 10px;
+    color: white;
+    background: #2A4D69;
+}
+
+.delete {
+    border-radius: 2px;
+    padding: 10px;
+    color: white;
+    background: #dc3545;
 }
