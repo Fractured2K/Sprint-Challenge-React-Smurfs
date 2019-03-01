@@ -10,9 +10,11 @@ const Smurf = props => {
         <p><strong>{props.age}</strong> smurf years old</p>
       </div>
 
+      {console.log(props)}
+
       <div className="buttons">
         <span className="edit">Edit</span>
-        <span className="delete">Delete</span>
+        <span className="delete" onClick={() => props.deleteSmurf(props.id)}>Delete</span>
       </div>
     </div>
   );

@@ -32,7 +32,7 @@ class App extends Component {
   }
 
   deleteSmurf = id => {
-    axios.delete(`http://localhost:3333/smurfs${id}`)
+    axios.delete(`http://localhost:3333/smurfs/${id}`)
       .then(res => this.setState({ smurfs: res.data }))
       .catch(err => console.log(err));
   }
@@ -41,7 +41,7 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar />
-        <Route exact path="/" render={() => <Smurfs smurfs={this.state.smurfs} />} />
+        <Route exact path="/" render={() => <Smurfs smurfs={this.state.smurfs} deleteSmurf={this.deleteSmurf} />} />
         <Route path="/smurf-form" render={() => <SmurfForm addSmurf={this.addSmurf} />} />
       </div>
     );
