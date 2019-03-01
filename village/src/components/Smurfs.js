@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
 
 import Smurf from './Smurf';
+import './Smurfs.css';
+import './Loader.css';
 
 class Smurfs extends Component {
   render() {
+    if (this.props.smurfs.length === 0) {
+      return (
+        <div className="Smurfs">
+          <h1>Smurf Village</h1>
+          <div class="loader">Loading...</div>
+        </div>
+      )
+    }
+
     return (
       <div className="Smurfs">
         <h1>Smurf Village</h1>
@@ -16,6 +27,8 @@ class Smurfs extends Component {
                 age={smurf.age}
                 height={smurf.height}
                 key={smurf.id}
+                setUpdatedSmurf={this.props.setUpdatedSmurf}
+                deleteSmurf={this.props.deleteSmurf}
               />
             );
           })}
@@ -26,7 +39,7 @@ class Smurfs extends Component {
 }
 
 Smurf.defaultProps = {
- smurfs: [],
+  smurfs: [],
 };
 
 export default Smurfs;

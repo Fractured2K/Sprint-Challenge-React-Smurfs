@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-
+import axios from 'axios';
 import './App.css';
+import { Route } from 'react-router-dom';
+
+// Components
+import NavBar from './components/layout/NavBar';
+
 import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
 
@@ -9,16 +14,57 @@ class App extends Component {
     super(props);
     this.state = {
       smurfs: [],
+      updatedSmurf: null
     };
   }
-  // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
-  // Notice what your map function is looping over and returning inside of Smurfs.
-  // You'll need to make sure you have the right properties on state and pass them down to props.
+
+  componentDidMount() {
+    axios.get('http://localhost:3333/smurfs')
+      .then(res => this.setState({ smurfs: res.data }))
+      .catch(err => console.log(err))
+  }
+
+  addSmurf = smurf => {
+    axios.post('http://localhost:3333/smurfs', smurf)
+      .then(res => this.setState({ smurfs: res.data }))
+      .catch(err => console.log(err))
+
+    this.props.history.push('/');
+  }
+
+  setUpdatedSmurf = (e, smurf) => {
+    e.preventDefault();
+
+    this.setState({
+      updatedSmurf: smurf
+    });
+
+    this.props.history.push("/smurf-form");
+  }
+
+  updateSmurf = (smurf) => {
+    axios.put(`http://localhost:3333/smurfs/${smurf.id}`, smurf)
+      .then(res => this.setState({
+        smurfs: res.data,
+        updatedSmurf: null
+      }))
+      .catch(err => console.log(err))
+
+    this.props.history.push('/');
+  }
+
+  deleteSmurf = id => {
+    axios.delete(`http://localhost:3333/smurfs/${id}`)
+      .then(res => this.setState({ smurfs: res.data }))
+      .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <div className="App">
-        <SmurfForm />
-        <Smurfs smurfs={this.state.smurfs} />
+        <NavBar updatedSmurf={this.state.updatedSmurf} />
+        <Route exact path="/" render={() => <Smurfs smurfs={this.state.smurfs} setUpdatedSmurf={this.setUpdatedSmurf} deleteSmurf={this.deleteSmurf} />} />
+        <Route path="/smurf-form" render={() => <SmurfForm updatedSmurf={this.state.updatedSmurf} updateSmurf={this.updateSmurf} addSmurf={this.addSmurf} />} />
       </div>
     );
   }

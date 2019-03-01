@@ -1,0 +1,17 @@
+.navigation {
+    background: #2A4D69;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.active {
+    border-bottom: 2px solid #4B86B4;
+}
