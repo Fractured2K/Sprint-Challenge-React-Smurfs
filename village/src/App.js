@@ -18,6 +18,12 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
+  addSmurf = (smurf) => {
+    axios.post('http://localhost:3333/smurfs')
+      .then(res => this.setState({ smurfs: res.data }))
+      .catch(err => console.log(err))
+  }
+
   render() {
     return (
       <div className="App">
