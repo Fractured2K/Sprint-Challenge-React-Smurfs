@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         <Route exact path="/" render={() => <Smurfs smurfs={this.state.smurfs} />} />
-        <Route path="/smurfs/add" render={() => <SmurfForm addSmurf={this.addSmurf} />} />
+        <Route path="/smurf-form" render={() => <SmurfForm addSmurf={this.addSmurf} />} />
       </div>
     );
   }
